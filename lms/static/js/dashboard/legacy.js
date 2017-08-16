@@ -132,6 +132,5 @@
              );
              $(this).attr('id', 'email-settings-' + index);
          });
-
      };
  })(jQuery, gettext, Logger, accessible_modal, interpolate);

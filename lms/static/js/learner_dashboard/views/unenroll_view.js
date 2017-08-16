@@ -16,70 +16,7 @@
              return Backbone.View.extend({
                  el: '.unenroll-modal',
 
-                 unenrollClick: function(event) {
-                     var isPaidCourse = $(event.target).data('course-is-paid-course') === 'True',
-                         certNameLong = $(event.target).data('course-cert-name-long'),
-                         enrollmentMode = $(event.target).data('course-enrollment-mode'),
-                         courseNumber = $(event.target).data('course-number'),
-                         courseName = $(event.target).data('course-name'),
-                         courseRefundUrl = $(event.target).data('course-refund-url'),
-                         dialogMessageAttr,
-                         request = $.ajax({
-                             url: courseRefundUrl,
-                             method: 'GET',
-                             dataType: 'json'
-                         });
-                     request.success(function(data, textStatus, xhr) {
-                         if (xhr.status === 200) {
-                             dialogMessageAttr = setDialogAttributes(isPaidCourse, certNameLong,
-                                            courseNumber, courseName, enrollmentMode, data.course_refundable_status);
-
-                             $('#track-info').empty();
-                             $('#refund-info').empty();
-
-                             $('#track-info').html(interpolate(dialogMessageAttr['data-track-info'], {
-                                 courseNumber: ['<span id="unenroll_course_number">', courseNumber, '</span>'].join(''),
-                                 courseName: ['<span id="unenroll_course_name">', courseName, '</span>'].join(''),
-                                 certNameLong: ['<span id="unenroll_cert_name">', certNameLong, '</span>'].join('')
-                             }, true));
-
-
-                             if ('data-refund-info' in dialogMessageAttr) {
-                                 $('#refund-info').text(dialogMessageAttr['data-refund-info']);
-                             }
-
-                             $('#unenroll_course_id').val($(event.target).data('course-id'));
-                         } else {
-                             $('#unenroll_error').text(
-                                gettext('Unable to determine whether we should give you a refund because' +
-                                        ' of System Error. Please try again later.')
-                             ).stop()
-                              .css('display', 'block');
-
-                             $('#unenroll_form input[type="submit"]').prop('disabled', true);
-                         }
-                         edx.dashboard.dropdown.toggleCourseActionsDropdownMenu(event);
-                     });
-                     request.fail(function() {
-                         $('#unenroll_error').text(
-                                gettext('Unable to determine whether we should give you a refund because' +
-                                        ' of System Error. Please try again later.')
-                         ).stop()
-                          .css('display', 'block');
-
-                         $('#unenroll_form input[type="submit"]').prop('disabled', true);
-
-                         edx.dashboard.dropdown.toggleCourseActionsDropdownMenu(event);
-                     });
-
-                     // Randomize survey option order
-                     survey = document.querySelector('.options');
-                     for (i = survey.children.length - 1; i >= 0; i--) {
-                         survey.appendChild(survey.children[Math.random() * i | 0]);
-                     }
-                 },
-
-                 function setDialogAttributes(isPaidCourse, certNameLong,
+                 setDialogAttributes: function(isPaidCourse, certNameLong,
                                         courseNumber, courseName, enrollmentMode, showRefundOption) {
                      var diagAttr = {};
 
@@ -108,6 +45,68 @@
                      return diagAttr;
                  },
 
+                 unenrollClick: function(event) {
+                     var isPaidCourse = $(event.target).data('course-is-paid-course') === 'True',
+                         certNameLong = $(event.target).data('course-cert-name-long'),
+                         enrollmentMode = $(event.target).data('course-enrollment-mode'),
+                         courseNumber = $(event.target).data('course-number'),
+                         courseName = $(event.target).data('course-name'),
+                         courseRefundUrl = $(event.target).data('course-refund-url'),
+                         dialogMessageAttr, survey, i,
+                         request = $.ajax({
+                             url: courseRefundUrl,
+                             method: 'GET',
+                             dataType: 'json'
+                         });
+                     request.success(function(data, textStatus, xhr) {
+                         if (xhr.status === 200) {
+                             dialogMessageAttr = this.setDialogAttributes(isPaidCourse, certNameLong,
+                                            courseNumber, courseName, enrollmentMode, data.course_refundable_status);
+
+                             $('#track-info').empty();
+                             $('#refund-info').empty();
+
+                             $('#track-info').html(interpolate(dialogMessageAttr['data-track-info'], {
+                                 courseNumber: ['<span id="unenroll_course_number">', courseNumber, '</span>'].join(''),
+                                 courseName: ['<span id="unenroll_course_name">', courseName, '</span>'].join(''),
+                                 certNameLong: ['<span id="unenroll_cert_name">', certNameLong, '</span>'].join('')
+                             }, true));
+
+                             if ('data-refund-info' in dialogMessageAttr) {
+                                 $('#refund-info').text(dialogMessageAttr['data-refund-info']);
+                             }
+
+                             $('#unenroll_course_id').val($(event.target).data('course-id'));
+                         } else {
+                             $('#unenroll_error').text(
+                                gettext('Unable to determine whether we should give you a refund because' +
+                                        ' of System Error. Please try again later.')
+                             ).stop()
+                              .css('display', 'block');
+
+                             $('#unenroll_form input[type="submit"]').prop('disabled', true);
+                         }
+                         window.edx.dashboard.dropdown.toggleCourseActionsDropdownMenu(event);
+                     }.bind(this));
+                     request.fail(function() {
+                         $('#unenroll_error').text(
+                                gettext('Unable to determine whether we should give you a refund because' +
+                                        ' of System Error. Please try again later.')
+                         ).stop()
+                          .css('display', 'block');
+
+                         $('#unenroll_form input[type="submit"]').prop('disabled', true);
+
+                         window.edx.dashboard.dropdown.toggleCourseActionsDropdownMenu(event);
+                     });
+
+                     // Randomize survey option order
+                     survey = document.querySelector('.options');
+                     for (i = survey.children.length - 1; i >= 0; i--) {
+                         survey.appendChild(survey.children[Math.random() * i | 0]);
+                     }
+                 },
+
                  switchToSlideOne: function() {
                      var reasonsSurvey = HtmlUtils.HTML($('.reasons_survey'));
                      $('.inner-wrapper header').hide();
@@ -134,8 +133,12 @@
 
                  unenrollComplete: function(event, xhr) {
                      if (xhr.status === 200) {
-                         this.switchToSlideOne();
-                         $('.submit_reasons').click(this.switchToSlideTwo.bind(this));
+                         if (!this.isEdx) {
+                             location.href = this.urls.dashboard;
+                         } else {
+                             this.switchToSlideOne();
+                             $('.submit_reasons').click(this.switchToSlideTwo.bind(this));
+                         }
                      } else if (xhr.status === 403) {
                          location.href = this.urls.signInUser + '?course_id=' +
                         encodeURIComponent($('#unenroll_course_id').val()) + '&enrollment_action=unenroll';
@@ -150,8 +153,9 @@
 
                  initialize: function(options) {
                      this.urls = options.urls;
+                     this.isEdx = options.isEdx;
 
-                     $('.action-unenroll').click(this.unenrollClick);
+                     $('.action-unenroll').click(this.unenrollClick.bind(this));
 
                      $('#unenroll_form').on('ajax:complete', this.unenrollComplete.bind(this));
 
