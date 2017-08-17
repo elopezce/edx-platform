@@ -25,6 +25,7 @@ from lms.djangoapps.grades.new.course_grade_factory import CourseGradeFactory
 from lms.djangoapps.verify_student.models import SoftwareSecurePhotoVerification
 from student.models import CourseEnrollment, UserProfile
 from xmodule.modulestore.django import modulestore
+from courseware.courses import get_course_by_id
 
 LOGGER = logging.getLogger(__name__)
 
@@ -316,6 +317,9 @@ class XQueueCertInterface(object):
         cert.course_id = course_id
         cert.name = profile_name
         cert.download_url = ''
+
+        if not get_course_by_id(course_id).self_paced:
+            cert.created_date = course_id.certificate_available_date
 
         # Strip HTML from grade range label
         grade_contents = forced_grade or course_grade.letter_grade
