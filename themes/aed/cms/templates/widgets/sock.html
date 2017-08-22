@@ -1,4 +1,4 @@
-<%page expression_filter="h" args="online_help_token"/>
+<%page expression_filter="h" args="online_help_token" />
 <%!
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
@@ -14,11 +14,8 @@ from django.core.urlresolvers import reverse
   </ul>
 
   <div class="wrapper-inner wrapper">
-    <section class="sock" id="sock">
-      <header>
-        <h2 class="title sr-only">${_("{studio_name} Documentation").format(studio_name=settings.STUDIO_NAME)}</h2>
-      </header>
-
+    <section class="sock" id="sock" aria-labelledby="sock-heading">
+        <h2 id="sock-heading" class="title sr-only">${_("{studio_name} Documentation").format(studio_name=settings.STUDIO_NAME)}</h2>
       <div class="support">
         <%!
         from django.conf import settings
@@ -31,9 +28,9 @@ from django.core.urlresolvers import reverse
             'text': _('edX Documentation'),
             'condition': True
         }, {
-            'href': 'https://partners.edx.org',
-            'sr_mouseover_text': _('Access Course Staff Support on the Partner Portal to submit or review support tickets'),
-            'text': _('edX Partner Portal'),
+            'href': 'https://open.edx.org',
+            'sr_mouseover_text': _('Access the Open edX Portal'),
+            'text': _('Open edX Portal'),
             'condition': True
         }, {
             'href': 'https://www.edx.org/course/overview-creating-edx-course-edx-edx101#.VO4eaLPF-n1',
