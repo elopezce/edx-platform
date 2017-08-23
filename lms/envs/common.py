@@ -1068,7 +1068,7 @@ FOOTER_OPENEDX_URL = "http://open.edx.org"
 # * https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png
 # * https://files.edx.org/openedx-logos/edx-openedx-logo-tag-light.png"
 # * https://files.edx.org/openedx-logos/edx-openedx-logo-tag-dark.png
-FOOTER_OPENEDX_LOGO_IMAGE = "https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png"
+FOOTER_OPENEDX_LOGO_IMAGE = "images/edx-openedx-logo-tag.png"
 
 # This is just a placeholder image.
 # Site operators can customize this with their organization's image.
