@@ -139,7 +139,7 @@ $yellow-u1: desaturate($yellow,15%);
 $yellow-u2: desaturate($yellow,30%);
 $yellow-u3: desaturate($yellow,45%);
 
-$blue: rgb(6, 121, 188);
+$blue: rgb(8, 112, 33);
 $blue-l1: tint($blue,20%);
 $blue-l2: tint($blue,40%);
 $blue-l3: tint($blue,60%);
@@ -254,17 +254,17 @@ $m-gray-t2: rgba($m-gray,0.50);
 $m-gray-t3: rgba($m-gray,0.75);
 
 $m-blue: $uxpl-blue-base;  // uxpl blue base
-$m-blue-l1: rgb(43,172,230);
-$m-blue-l2: rgb(66,181,233);
-$m-blue-l3: rgb(89,190,236);
+$m-blue-l1: $uxpl-blue-base;
+$m-blue-l2: $uxpl-blue-base;
+$m-blue-l3: $uxpl-blue-base;
 $m-blue-l4: tint($m-blue,90%);
 $m-blue-l5: tint($m-blue,95%);
 $m-blue-l6: #4bb4fb;
-$m-blue-d1: rgb(23,144,199);
+$m-blue-d1: $uxpl-blue-base;
 $m-blue-d2: $blue;
-$m-blue-d3: rgb(18,111,154);
-$m-blue-d4: rgb(10,74,103);
-$m-blue-d5: rgb(0,158,231);
+$m-blue-d3: $uxpl-blue-base;
+$m-blue-d4: $uxpl-blue-base;
+$m-blue-d5: $uxpl-blue-base;
 $m-blue-d6: #256A97;
 $m-blue-t0: rgba($m-blue,0.125);
 $m-blue-t1: rgba($m-blue,0.25);
