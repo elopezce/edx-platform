@@ -28,7 +28,7 @@
         </ol>
       </nav>
 
-      <div class="wrapper-logo">
+      <!--<div class="wrapper-logo">
         <p>
           <a href="/">
             ## The default logo is a placeholder.
@@ -41,7 +41,7 @@
             <img alt="organization logo" src="${footer['logo_image']}">
           </a>
         </p>
-      </div>
+      </div>-->
 
       ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
       <p class="copyright">${footer['copyright']}</p>
@@ -62,13 +62,13 @@
     ## through an API to partner sites (such as marketing sites or blogs),
     ## which are not technically powered by OpenEdX.
     % if not hide_openedx_link:
-    <div class="footer-about-openedx">
-      <p><!--
+    <!--<div class="footer-about-openedx">
+      <p>
         <a href="${footer['openedx_link']['url']}">
           <img src="${footer['openedx_link']['image']}" alt="${footer['openedx_link']['title']}" width="140" />
         </a>
-      </p>-->
-    </div>
+      </p>
+    </div>-->
     % endif
   </footer>
 </div>
