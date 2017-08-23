@@ -139,7 +139,7 @@ $yellow-u1: desaturate($yellow,15%);
 $yellow-u2: desaturate($yellow,30%);
 $yellow-u3: desaturate($yellow,45%);
 
-$blue: rgb(0, 121, 188);
+$blue: rgb(6, 121, 188);
 $blue-l1: tint($blue,20%);
 $blue-l2: tint($blue,40%);
 $blue-l3: tint($blue,60%);
@@ -160,8 +160,8 @@ $blue-t1: rgba($blue, 0.25);
 $blue-t2: rgba($blue, 0.50);
 $blue-t3: rgba($blue, 0.75);
 
-$uxpl-blue-base: rgb(0, 117, 180); // wcag2a compliant
-$uxpl-blue-hover-active: rgb(6, 86, 131); // wcag2a compliant
+$uxpl-blue-base: rgb(8, 112, 33); // wcag2a compliant
+$uxpl-blue-hover-active: rgb(8, 112, 33); // wcag2a compliant
 
 $uxpl-green-base: rgb(0, 129, 0); // wcag2a compliant
 $uxpl-green-hover-active: rgb(0, 155, 0); // wcag2a compliant
@@ -232,8 +232,8 @@ $light-gray2: rgb(171,171,171);
 $light-gray3: rgb(249,249,249);
 $light-gray4: rgb(252,252,252);
 $dark-gray2: rgb(151,151,151);
-$blue1: rgb(74,144,226);
-$blue2: rgb(0,161,229);
+$blue1: rgb(8, 112, 33);
+$blue2: rgb(8, 112, 33);
 $green1: rgb(97,161,46);
 $red1: rgb(208,2,27);
 
