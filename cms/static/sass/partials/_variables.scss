@@ -41,8 +41,8 @@ $transparent: rgba(0,0,0,0); // used when color value is needed for UI width/tra
 
 // +Colors - UXPL new pattern library colors
 // ====================
-$uxpl-blue-base: rgb(0, 117, 180); // wcag2a compliant
-$uxpl-blue-hover-active: rgb(6, 86, 131); // wcag2a compliant
+$uxpl-blue-base: rgb(8, 112, 33); // wcag2a compliant
+$uxpl-blue-hover-active: rgb(0, 200, 50); // wcag2a compliant
 
 $uxpl-green-base: rgb(0, 129, 0); // wcag2a compliant
 $uxpl-green-hover-active: rgb(0, 155, 0); // wcag2a compliant
@@ -93,7 +93,7 @@ $btn-lms-background-hover: #e4e4e4;
 $btn-lms-gradient-hover: #d1c9c9;
 $btn-lms-shadow-active: #cac2c2;
 
-$blue: rgb(0, 159, 230);
+$blue: rgb(8, 112, 33);
 $blue-l1: tint($blue,20%);
 $blue-l2: tint($blue,40%);
 $blue-l3: tint($blue,60%);
