@@ -571,10 +571,10 @@ urlpatterns += (
     ),
 
     # Student account
-    url(
-        r'^account/',
-        include('student_account.urls')
-    ),
+    #url(
+    #    r'^account/',
+    #    include('student_account.urls')
+    #),
 
     # Student profile
     url(
