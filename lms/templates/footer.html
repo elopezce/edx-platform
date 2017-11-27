@@ -19,13 +19,24 @@
   >
     <div class="colophon">
       <nav class="nav-colophon" aria-label="${_('About')}">
-        <ol>
+      <ol>
+        <li class="nav-colophon-01">
+          <a id="avisolegal" href="http://www.andaluciaesdigital.es/aviso-legal">Aviso Legal</a>
+        </li>
+        <li class="nav-colophon-02">
+          <a id="contacto" href="http://www.andaluciaesdigital.es/contacto">Contacto</a>
+        </li>
+        <li class="nav-colophon-03">
+          <a id="accesibilidad" href="http://www.andaluciaesdigital.es/accesibilidad">Accesibilidad</a>
+        </li>
+      </ol>
+        <!--<ol>
             % for item_num, link in enumerate(footer['navigation_links'], start=1):
             <li class="nav-colophon-0${item_num}">
               <a id="${link['name']}" href="${link['url']}">${link['title']}</a>
             </li>
             % endfor
-        </ol>
+        </ol>-->
       </nav>
 
       <!--<div class="wrapper-logo">
@@ -46,7 +57,7 @@
       ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
       <p class="copyright">${footer['copyright']}</p>
 
-      <nav class="nav-legal" aria-label="${_('Legal')}">
+      <!--<nav class="nav-legal" aria-label="${_('Legal')}">
         <ul>
           % for item_num, link in enumerate(footer['legal_links'], start=1):
             <li class="nav-legal-0${item_num}">
@@ -54,7 +65,7 @@
             </li>
           % endfor
         </ul>
-      </nav>
+      </nav>-->
     </div>
 
     ## Please leave this link and use one of the logos provided
